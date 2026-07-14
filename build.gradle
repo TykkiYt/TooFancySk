@@ -2,8 +2,8 @@ plugins {
     id 'java'
 }
 
-group = 'me.lostmatter'
-version = '1.2'
+group = 'me.tykki'
+version = '1.0'
 
 repositories {
     mavenCentral()
@@ -25,13 +25,13 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
-    compileOnly("de.oliver:FancyNpcs:2.6.0")
-    compileOnly("de.oliver:FancyHolograms:2.6.0")
-    compileOnly("com.github.SkriptLang:Skript:2.11.2")
+    compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
+    compileOnly("de.oliver:FancyNpcs:2.11.0")
+    compileOnly("de.oliver:FancyHolograms:2.10.0")
+    compileOnly("com.github.SkriptLang:Skript:2.15.3")
 }
 
-def targetJavaVersion = 21
+def targetJavaVersion = 25
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
