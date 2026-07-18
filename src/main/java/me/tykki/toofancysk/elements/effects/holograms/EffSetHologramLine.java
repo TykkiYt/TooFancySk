@@ -10,6 +10,7 @@ import de.oliver.fancyholograms.api.hologram.Hologram;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EffSetHologramLine extends Effect {
@@ -41,14 +42,18 @@ public class EffSetHologramLine extends Effect {
 
         if (lineNumber == null || hologram == null || text == null) return;
 
-        TextHologramData hologramData = (TextHologramData) hologram.getData();
-        List<String> lines = hologramData.getText();
+        if (!(hologram.getData() instanceof TextHologramData hologramData)) return;
+
+        double requestedLine = lineNumber.doubleValue();
+        if (requestedLine < 1 || requestedLine != Math.rint(requestedLine)) return;
 
         // Skript käyttää 1-pohjaista indeksointia, Java 0-pohjaista
-        int index = lineNumber.intValue() - 1;
+        int index = (int) requestedLine - 1;
+        List<String> lines = new ArrayList<>(hologramData.getText());
         if (index < 0 || index >= lines.size()) return;
 
         lines.set(index, text);
+        hologramData.setText(lines);
         hologram.forceUpdate();
     }
 
