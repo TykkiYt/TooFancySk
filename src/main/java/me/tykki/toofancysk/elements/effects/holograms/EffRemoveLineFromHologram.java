@@ -36,8 +36,14 @@ public class EffRemoveLineFromHologram extends Effect {
         Hologram hologram = hologramExpression.getSingle(event);
         if (hologram == null) return;
 
+        Integer lineNumber = lineNumberExpression.getSingle(event);
+        if (lineNumber == null) return;
+
         TextHologramData hologramData = (TextHologramData) hologram.getData();
-        hologramData.removeLine(lineNumberExpression.getSingle(event));
+        int lineCount = hologramData.getText().size();
+        if (lineNumber < 0 || lineNumber >= lineCount) return;
+
+        hologramData.removeLine(lineNumber);
 
         hologram.forceUpdate();
     }
